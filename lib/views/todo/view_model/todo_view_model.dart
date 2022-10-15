@@ -25,22 +25,22 @@ class TodoViewVM extends StateNotifier<TodoViewModel> {
 
   void create(String name) async {
     final id = const Uuid().v4();
-    await _repository.createTodo(todo: Todo(id: id, name: name));
     state = state.copyWith(todos: [...state.todos, Todo(id: id, name: name)]);
   }
 
-  void update(String id, bool isDone) async {
-    await _repository.updateTodo(todo: const Todo(name: ""));
-
+  void updateName(String id, String name) async {
     final todos = state.todos.toList();
     final index = todos.indexWhere((element) => element.id == id);
-    if (0 <= index) {
-      todos[index] = Todo(id: id, name: todos[index].name, isDone: isDone);
-      state = state.copyWith(todos: todos);
-    }
+    final newTodo = Todo(id: id, name: name, isDone: todos[index].isDone);
+    todos[index] = newTodo;
+    state = state.copyWith(todos: todos);
   }
 
-  void delete() async {
-    await _repository.deleteTodo(todoId: "");
+  void done(String id, bool isDone) async {
+    // TODO
+  }
+
+  void delete(String id) async {
+    // TODO
   }
 }

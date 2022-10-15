@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/models/todo_model.dart';
-import 'package:todo_app/views/todo/view/add_todo_dialog.dart';
+import 'package:todo_app/views/components/dialog_component.dart';
 import 'package:todo_app/views/todo/view_model/todo_view_model.dart';
 
 class TodoTile extends ConsumerWidget {
@@ -18,13 +18,27 @@ class TodoTile extends ConsumerWidget {
 
     return ListTile(
       key: ValueKey(todo.id),
-      title: Text(todo.name),
+      title: Text(
+        todo.name,
+        style: todo.isDone
+            ? const TextStyle(decoration: TextDecoration.lineThrough)
+            : null,
+      ),
       trailing: Checkbox(
         value: todo.isDone,
-        onChanged: (val) => vm.update(todo.id ?? "", val ?? false),
+        onChanged: (val) => vm.done(todo.id ?? "", val ?? false),
       ),
-      onTap: () => AddTodoDialog.show(context, todo),
-      onLongPress: () => vm.delete(),
+      onTap: () => showDialog(
+        context: context,
+        builder: (context) => DialogComponent(
+          id: todo.id,
+          text: todo.name,
+          hintText: "",
+          buttonText: "update",
+          buttonFunc: vm.updateName,
+        ),
+      ),
+      onLongPress: () => vm.delete(todo.id ?? ""),
     );
   }
 }

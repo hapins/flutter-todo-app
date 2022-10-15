@@ -9,7 +9,6 @@ class TodoList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(todoViewModelProvider);
-    final vm = ref.read(todoViewModelProvider.notifier);
 
     return model.todos.isEmpty
         ? const Center(

@@ -8,12 +8,12 @@ abstract class Todo implements _$Todo {
   const Todo._();
 
   const factory Todo({
-    String? id,
+    required String id,
     required String name,
     @Default(false) bool isDone,
   }) = _Todo;
 
-  factory Todo.empty() => const Todo(name: '');
+  factory Todo.empty() => const Todo(id: '', name: '');
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 
