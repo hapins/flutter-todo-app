@@ -1,7 +1,6 @@
 import "package:freezed_annotation/freezed_annotation.dart";
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/models/todo_model.dart';
-import 'package:todo_app/repositories/todo_repository.dart';
 import 'package:uuid/uuid.dart';
 
 part 'todo_view_model.freezed.dart';
@@ -21,7 +20,6 @@ class TodoViewVM extends StateNotifier<TodoViewModel> {
   TodoViewVM(this._ref) : super(TodoViewModel(todos: []));
 
   final Ref _ref;
-  late final _repository = _ref.read(todoRepositoryProvider);
 
   void create(String name) async {
     final id = const Uuid().v4();
@@ -37,10 +35,16 @@ class TodoViewVM extends StateNotifier<TodoViewModel> {
   }
 
   void done(String id, bool isDone) async {
-    // TODO
+    final todos = state.todos.toList();
+    final index = todos.indexWhere((element) => element.id == id);
+    final newTodo = Todo(id: id, name: todos[index].name, isDone: isDone);
+    todos[index] = newTodo;
+    state = state.copyWith(todos: todos);
   }
 
   void delete(String id) async {
-    // TODO
+    final todos = state.todos.toList();
+    todos.removeWhere((e) => e.id == id);
+    state = state.copyWith(todos: todos);
   }
 }
