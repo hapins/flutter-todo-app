@@ -10,7 +10,7 @@ class TodoList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(todoViewModelProvider);
 
-    return model.todos.isEmpty
+    return model.todoList.isEmpty
         ? const Center(
             child: Text(
               'Tap + to add an item',
@@ -18,9 +18,9 @@ class TodoList extends ConsumerWidget {
             ),
           )
         : ListView.builder(
-            itemCount: model.todos.length,
+            itemCount: model.todoList.length,
             itemBuilder: (BuildContext context, int index) {
-              final todo = model.todos[index];
+              final todo = model.todoList[index];
               return ProviderScope(
                 child: TodoTile(todo: todo),
               );

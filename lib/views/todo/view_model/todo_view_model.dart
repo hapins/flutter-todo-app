@@ -9,7 +9,7 @@ part 'todo_view_model.freezed.dart';
 @freezed
 class TodoViewModel with _$TodoViewModel {
   factory TodoViewModel({
-    required List<Todo> todos,
+    required List<Todo> todoList,
   }) = _TodoViewModel;
 }
 
@@ -18,22 +18,23 @@ final todoViewModelProvider = StateNotifierProvider<TodoViewVM, TodoViewModel>(
 );
 
 class TodoViewVM extends StateNotifier<TodoViewModel> {
-  TodoViewVM(this._ref) : super(TodoViewModel(todos: []));
+  TodoViewVM(this._ref) : super(TodoViewModel(todoList: []));
 
   final Ref _ref;
   late final _repository = _ref.read(todoRepositoryProvider);
 
   void create(String name) async {
     final id = const Uuid().v4();
-    state = state.copyWith(todos: [...state.todos, Todo(id: id, name: name)]);
+    state =
+        state.copyWith(todoList: [...state.todoList, Todo(id: id, name: name)]);
   }
 
   void updateName(String id, String name) async {
-    final todos = state.todos.toList();
-    final index = todos.indexWhere((element) => element.id == id);
-    final newTodo = Todo(id: id, name: name, isDone: todos[index].isDone);
-    todos[index] = newTodo;
-    state = state.copyWith(todos: todos);
+    final todoList = state.todoList.toList();
+    final index = todoList.indexWhere((element) => element.id == id);
+    final newTodo = Todo(id: id, name: name, isDone: todoList[index].isDone);
+    todoList[index] = newTodo;
+    state = state.copyWith(todoList: todoList);
   }
 
   void done(String id, bool isDone) async {

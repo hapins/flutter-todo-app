@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TodoViewModel {
-  List<Todo> get todos => throw _privateConstructorUsedError;
+  List<Todo> get todoList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TodoViewModelCopyWith<TodoViewModel> get copyWith =>
@@ -28,7 +28,7 @@ abstract class $TodoViewModelCopyWith<$Res> {
   factory $TodoViewModelCopyWith(
           TodoViewModel value, $Res Function(TodoViewModel) then) =
       _$TodoViewModelCopyWithImpl<$Res>;
-  $Res call({List<Todo> todos});
+  $Res call({List<Todo> todoList});
 }
 
 /// @nodoc
@@ -42,12 +42,12 @@ class _$TodoViewModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? todos = freezed,
+    Object? todoList = freezed,
   }) {
     return _then(_value.copyWith(
-      todos: todos == freezed
-          ? _value.todos
-          : todos // ignore: cast_nullable_to_non_nullable
+      todoList: todoList == freezed
+          ? _value.todoList
+          : todoList // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
     ));
   }
@@ -60,7 +60,7 @@ abstract class _$$_TodoViewModelCopyWith<$Res>
           _$_TodoViewModel value, $Res Function(_$_TodoViewModel) then) =
       __$$_TodoViewModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<Todo> todos});
+  $Res call({List<Todo> todoList});
 }
 
 /// @nodoc
@@ -76,12 +76,12 @@ class __$$_TodoViewModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? todos = freezed,
+    Object? todoList = freezed,
   }) {
     return _then(_$_TodoViewModel(
-      todos: todos == freezed
-          ? _value._todos
-          : todos // ignore: cast_nullable_to_non_nullable
+      todoList: todoList == freezed
+          ? _value._todoList
+          : todoList // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
     ));
   }
@@ -90,18 +90,18 @@ class __$$_TodoViewModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TodoViewModel implements _TodoViewModel {
-  _$_TodoViewModel({required final List<Todo> todos}) : _todos = todos;
+  _$_TodoViewModel({required final List<Todo> todoList}) : _todoList = todoList;
 
-  final List<Todo> _todos;
+  final List<Todo> _todoList;
   @override
-  List<Todo> get todos {
+  List<Todo> get todoList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_todos);
+    return EqualUnmodifiableListView(_todoList);
   }
 
   @override
   String toString() {
-    return 'TodoViewModel(todos: $todos)';
+    return 'TodoViewModel(todoList: $todoList)';
   }
 
   @override
@@ -109,12 +109,12 @@ class _$_TodoViewModel implements _TodoViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TodoViewModel &&
-            const DeepCollectionEquality().equals(other._todos, _todos));
+            const DeepCollectionEquality().equals(other._todoList, _todoList));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todos));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_todoList));
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +123,11 @@ class _$_TodoViewModel implements _TodoViewModel {
 }
 
 abstract class _TodoViewModel implements TodoViewModel {
-  factory _TodoViewModel({required final List<Todo> todos}) = _$_TodoViewModel;
+  factory _TodoViewModel({required final List<Todo> todoList}) =
+      _$_TodoViewModel;
 
   @override
-  List<Todo> get todos;
+  List<Todo> get todoList;
   @override
   @JsonKey(ignore: true)
   _$$_TodoViewModelCopyWith<_$_TodoViewModel> get copyWith =>
